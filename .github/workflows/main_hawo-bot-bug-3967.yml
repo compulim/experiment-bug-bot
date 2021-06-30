@@ -6,7 +6,7 @@ name: Build and deploy Node.js app to Azure Web App - hawo-bot-bug-3967
 on:
   push:
     branches:
-      - main
+      - bug-3967
   workflow_dispatch:
 
 jobs:
