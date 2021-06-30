@@ -10,6 +10,42 @@ class EchoBot extends ActivityHandler {
         this.onMessage(async (context, next) => {
             const replyText = `Echo: ${ context.activity.text }`;
             await context.sendActivity(MessageFactory.text(replyText, replyText));
+            await context.sendActivity(MessageFactory.attachment({
+                "contentType": "application/vnd.microsoft.card.adaptive",
+                "content": {
+                  "type": "AdaptiveCard",
+                  "version": "1.0",
+                  "body": [
+                    {
+                      "type": "TextBlock",
+                      "text": "coffee",
+                      "size": "large"
+                    },
+                    {
+                      "type": "FactSet",
+                      "facts": [
+                        {
+                          "title": "coffee type",
+                          "value": "'drip'"
+                        },
+                        {
+                          "title": "size",
+                          "value": "'large'"
+                        },
+                        {
+                          "title": "milk",
+                          "value": "'whole'"
+                        },
+                        {
+                          "title": "number of shots",
+                          "value": "'1'"
+                        }
+                      ]
+                    }
+                  ],
+                  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json"
+                }
+              }));
             // By calling next() you ensure that the next BotHandler is run.
             await next();
         });
